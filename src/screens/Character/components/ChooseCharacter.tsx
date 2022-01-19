@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import Energy from '../../../assets/character/energy.svg';
@@ -8,7 +8,17 @@ import Calmness from '../../../assets/character/calmness.svg';
 import Speed from '../../../assets/character/speed.svg';
 import Wisdom from '../../../assets/character/wisdom.svg';
 
-const ChooseCharacter = ({ selectedCharacters, setSelectedCharacters, forceUpdate }) => {
+type ChooseCharacterType = {
+  selectedCharacters: object[];
+  setSelectedCharacters: (value: object[]) => void;
+  forceUpdate: () => void;
+};
+
+const ChooseCharacter: FC<ChooseCharacterType> = ({
+  selectedCharacters,
+  setSelectedCharacters,
+  forceUpdate,
+}) => {
   const characters = [
     { pic: <Energy />, title: 'Energy' },
     { pic: <Smart />, title: 'Smart' },
@@ -20,7 +30,6 @@ const ChooseCharacter = ({ selectedCharacters, setSelectedCharacters, forceUpdat
 
   const onPress = (item: object) => {
     let result = selectedCharacters.map(({ title }) => title);
-    console.log('result', result);
     if (!result.includes(item.title)) {
       selectedCharacters.push(item);
       setSelectedCharacters(selectedCharacters);
@@ -33,7 +42,7 @@ const ChooseCharacter = ({ selectedCharacters, setSelectedCharacters, forceUpdat
       <Text style={styles.text}>Choose your character</Text>
       <FlatList
         data={characters}
-        style={{ marginTop: 25 }}
+        style={styles.charactersFlatList}
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.characterButton} onPress={() => onPress(item)}>
             {item.pic}
@@ -54,10 +63,13 @@ const styles = StyleSheet.create({
     marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 200,
+    height: 250,
+  },
+  charactersFlatList: {
+    marginTop: 25,
   },
   text: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   imageThumbnail: {

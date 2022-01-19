@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -10,12 +10,25 @@ type DropDownMenuType = {
 const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
   const [open, setOpen] = useState(false);
 
-  const [items, setItems] = useState([
-    { label: '1', value: '1' },
-    { label: '2', value: '2' },
-    { label: '3', value: '3' },
-    { label: '4', value: '4' },
-  ]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const arr = initArray();
+    setItems(arr);
+  }, []);
+
+  let myArray = [];
+  let count = 45;
+
+  function initArray() {
+    for (let i = 1; i < count + 1; i++) {
+      let newElement = {};
+      newElement.label = i;
+      newElement.value = i;
+      myArray.push(newElement);
+    }
+    return myArray;
+  }
 
   return (
     <View style={styles.container}>
@@ -33,9 +46,9 @@ const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
           width: 200,
           alignItems: 'center',
           alignSelf: 'center',
-          borderRadius: 50,
           justifyContent: 'center',
-          borderColor: '#EE6E45',
+          borderColor: '#fff',
+          backgroundColor: 'rgba(252, 252, 252, 1)',
         }}
         containerStyle={{
           width: 200,
@@ -45,13 +58,13 @@ const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
           color: '#EE6E45',
           borderColor: '#EE6E45',
           textAlign: 'center',
+          fontSize: 14,
         }}
         labelStyle={{ marginLeft: 30 }}
         dropDownContainerStyle={{
           borderColor: '#fff',
           justifyContent: 'center',
         }}
-        modalContentContainerStyle={{ color: '#fff' }}
         arrowIconStyle={{ tintColor: 'rgba(238, 110, 69, 0.3)' }}
         tickIconStyle={{ tintColor: '#EE6E45' }}
         selectedItemContainerStyle={{
@@ -71,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
   },

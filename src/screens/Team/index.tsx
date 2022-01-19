@@ -1,8 +1,7 @@
 import { useRoute } from '@react-navigation/native';
-import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// import DropDownPicker from 'react-native-dropdown-picker';
 
 import { RootNavigatorScreenProps } from '../../navigation';
 import ChooseTeam from './components/ChooseTeam';
@@ -19,6 +18,15 @@ export const TeamScreen: React.FC<TeamScreenProps> = ({ navigation }) => {
   const [number, setNumber] = React.useState();
   const route = useRoute();
 
+  const onPressNext = () => {
+    navigation.navigate('Character', {
+      avatar: route.params.avatar,
+      team: selectedTeam,
+      name: name,
+      number: number,
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ChooseTeam selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} />
@@ -27,14 +35,7 @@ export const TeamScreen: React.FC<TeamScreenProps> = ({ navigation }) => {
       <TouchableOpacity
         style={selectedTeam && name && number ? styles.nextButtonActive : styles.nextButtonInactive}
         disabled={!(selectedTeam && name && number)}
-        onPress={() =>
-          navigation.navigate('Character', {
-            avatar: route.params.avatar,
-            team: selectedTeam,
-            name: name,
-            number: number,
-          })
-        }
+        onPress={onPressNext}
       >
         <Text style={styles.nextButtonTextActive}>Next</Text>
       </TouchableOpacity>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#EE6E45',
     borderRadius: 50,
-    marginTop: 50,
+    marginTop: 200,
   },
   nextButtonInactive: {
     width: width * 0.6,
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(175, 171, 170, 0.4)',
     borderRadius: 50,
-    marginTop: 50,
+    marginTop: 200,
+    zIndex: -1,
   },
   nextButtonTextActive: {
     fontSize: 16,

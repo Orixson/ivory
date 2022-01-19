@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0,
     },
-    shadowOpacity: 2,
-    shadowRadius: 30,
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
     elevation: 5,
   },
   arrow: {

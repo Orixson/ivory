@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Svg from 'react-native-svg';
 
 import Remove from '../../../assets/character/remove.svg';
 
 type SelectedCharactersType = {
   selectedCharacters: string[];
-  setSelectedCharacter: (character: object[]) => void;
+  setSelectedCharacter: (value: object[]) => void;
 };
 
 const SelectedCharacters: FC<SelectedCharactersType> = ({
@@ -27,9 +28,11 @@ const SelectedCharacters: FC<SelectedCharactersType> = ({
         renderItem={({ item, index }) => (
           <TouchableOpacity style={styles.characterButton} onPress={() => removeCharacter(index)}>
             <View style={styles.remove}>
-              <Remove />
+              <Remove width={20} height={20} />
             </View>
-            {item.pic}
+            <Svg height="55%" width="55%" viewBox="0 0 50 50">
+              {item.pic}
+            </Svg>
           </TouchableOpacity>
         )}
         numColumns={3}
@@ -43,14 +46,14 @@ export default SelectedCharacters;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
     height: 200,
     width: '80%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   characterButton: {
-    width: 70,
+    width: 60,
+    height: 50,
     marginVertical: 5,
     flexDirection: 'column',
     alignItems: 'center',
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(252, 252, 252, 1)',
   },
   text: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   remove: {
