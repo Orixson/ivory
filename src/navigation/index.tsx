@@ -7,9 +7,9 @@ import {
 import { CharacterScreen, InitialScreen, TeamScreen } from '../screens';
 
 type RootNavigatorParams = {
-  Character: { avatar: number; team: number; name: string; number?: number };
+  Character: { avatar: number; team?: number; name: string; number?: number };
   Initial: undefined;
-  Team: { avatar: number };
+  Team: { avatar?: number };
 };
 
 const Stack = createNativeStackNavigator<RootNavigatorParams>();

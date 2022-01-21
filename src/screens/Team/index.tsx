@@ -7,19 +7,20 @@ import { RootNavigatorScreenProps } from '../../navigation';
 import ChooseTeam from './components/ChooseTeam';
 import NameInput from './components/NameInput';
 import DropDownPicker from './components/Dropdown';
+import { orange, white } from '../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
 interface TeamScreenProps extends RootNavigatorScreenProps<'Team'> {}
 
 export const TeamScreen: React.FC<TeamScreenProps> = ({ navigation }) => {
-  const [selectedTeam, setSelectedTeam] = useState(0);
+  const [selectedTeam, setSelectedTeam] = useState();
   const [name, onChangeName] = React.useState('');
   const [number, setNumber] = React.useState();
   const route = useRoute();
 
   const onPressNext = () => {
-    navigation.navigate('Character', {
+    navigation.push('Character', {
       avatar: route.params.avatar,
       team: selectedTeam,
       name: name,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
   input: {
     height: 40,
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: '#EE6E45',
+    borderColor: orange,
     padding: 10,
   },
   text: {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     height: width * 0.1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EE6E45',
+    backgroundColor: orange,
     borderRadius: 50,
     marginTop: 200,
   },
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   },
   nextButtonTextActive: {
     fontSize: 16,
-    color: '#fff',
+    color: white,
     fontWeight: 'bold',
   },
   nextButtonTextInactive: {

@@ -15,6 +15,7 @@ import Lion from '../../assets/avatars/lion.svg';
 import Eggplant from '../../assets/avatars/eggplant.svg';
 import Palm from '../../assets/avatars/palm.svg';
 import Banana from '../../assets/avatars/banana.svg';
+import { orange, white } from '../../constants/colors';
 
 interface InitialScreenProps extends RootNavigatorScreenProps<'Initial'> {}
 
@@ -76,7 +77,7 @@ export const InitialScreen: React.FC<InitialScreenProps> = ({ navigation }) => {
       <TouchableOpacity
         style={styles.button}
         onPress={() =>
-          navigation.navigate('Team', {
+          navigation.push('Team', {
             avatar: ref.current.avatar,
           })
         }
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: white,
   },
   wrapper: {
     marginTop: 50,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginBottom: 50,
-    shadowColor: '#EE6E45',
+    shadowColor: orange,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   },
   arrow: {
     fontSize: 50,
-    color: '#EE6E45',
+    color: orange,
   },
 });
 

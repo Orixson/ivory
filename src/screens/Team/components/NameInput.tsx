@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
+import { orange } from '../../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
@@ -35,9 +36,9 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: '#EE6E45',
+    borderColor: orange,
     padding: 10,
-    color: '#EE6E45',
+    color: orange,
   },
   text: {
     fontSize: 24,

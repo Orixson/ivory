@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { orange, white } from '../../../constants/colors';
 
 type DropDownMenuType = {
   number?: number;
@@ -9,7 +10,6 @@ type DropDownMenuType = {
 
 const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
   const [open, setOpen] = useState(false);
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
     setItems(arr);
   }, []);
 
-  let myArray = [];
-  let count = 45;
+  const myArray = [];
+  const count = 45;
 
   function initArray() {
     for (let i = 1; i < count + 1; i++) {
@@ -47,31 +47,31 @@ const DropDownMenu: FC<DropDownMenuType> = ({ number, setNumber }) => {
           alignItems: 'center',
           alignSelf: 'center',
           justifyContent: 'center',
-          borderColor: '#fff',
+          borderColor: white,
           backgroundColor: 'rgba(252, 252, 252, 1)',
         }}
         containerStyle={{
           width: 200,
-          borderColor: '#EE6E45',
+          borderColor: orange,
         }}
         textStyle={{
-          color: '#EE6E45',
-          borderColor: '#EE6E45',
+          color: orange,
+          borderColor: orange,
           textAlign: 'center',
           fontSize: 14,
         }}
         labelStyle={{ marginLeft: 30 }}
         dropDownContainerStyle={{
-          borderColor: '#fff',
+          borderColor: white,
           justifyContent: 'center',
         }}
         arrowIconStyle={{ tintColor: 'rgba(238, 110, 69, 0.3)' }}
-        tickIconStyle={{ tintColor: '#EE6E45' }}
+        tickIconStyle={{ tintColor: orange }}
         selectedItemContainerStyle={{
-          backgroundColor: '#EE6E45',
+          backgroundColor: orange,
           borderRadius: 10,
         }}
-        selectedItemLabelStyle={{ marginLeft: 30, color: '#fff', backgroundColor: '#EE6E45' }}
+        selectedItemLabelStyle={{ marginLeft: 30, color: white, backgroundColor: orange }}
       />
     </View>
   );
